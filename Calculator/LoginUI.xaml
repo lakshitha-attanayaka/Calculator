@@ -5,13 +5,11 @@
              Title="LoginUI">
     <VerticalStackLayout Padding="40" VerticalOptions="Center">
         <Label TextColor="Red" Padding="10" FontSize="20" VerticalOptions="Center">  Welcome</Label>
-        <Entry x:Name="Uname" Placeholder="Username" TextColor="Black" PlaceholderColor="Gray" ></Entry>
-        <Entry x:Name="Passwd" Placeholder="Password" IsPassword="True"  TextColor="Black" PlaceholderColor="Gray" ></Entry>
+        <Entry Placeholder="Username" TextColor="Black" PlaceholderColor="Gray" Text="{Binding UserName}" ></Entry>
+        <Entry Placeholder="Password" IsPassword="True"  TextColor="Black" PlaceholderColor="Gray" Text="{Binding Password}" ></Entry>
         <Button 
             Text="Login" 
-            Clicked="Btn_Clicked"
-
-        ></Button>
+            Command="{Binding TapCommand}"></Button>
         
     </VerticalStackLayout>
 </ContentPage>
