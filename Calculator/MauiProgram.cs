@@ -1,4 +1,8 @@
-﻿namespace Calculator;
+﻿using Calculator.Services;
+using Calculator.Services.Abstractions;
+using Calculator.ViewModels;
+
+namespace Calculator;
 
 public static class MauiProgram
 {
@@ -13,6 +17,11 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		return builder.Build();
+
+		builder.Services.AddSingleton<IAuthService, AuthService>();
+        
+        builder.Services.AddSingleton<LoginViewModel>();
+
+        return builder.Build();
     }
 }

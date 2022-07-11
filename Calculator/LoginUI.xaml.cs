@@ -4,10 +4,10 @@ namespace Calculator;
 
 public partial class LoginUI : ContentPage
 {
-	public LoginUI()
+	public LoginUI(LoginViewModel vm)
 	{
 		InitializeComponent();
-		BindingContext = new LoginViewModel();
+		BindingContext = vm;
 	}
 
 	//private void Btn_Clicked(object sender, EventArgs e)

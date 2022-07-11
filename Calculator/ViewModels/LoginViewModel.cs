@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Calculator.Services.Abstractions;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,19 +13,28 @@ namespace Calculator.ViewModels
 {
     public partial class LoginViewModel : ObservableObject
     {
+        IAuthService _auth;
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FullName))]
         private string _userName;
         [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(FullName))]
         private string _password;
 
-        //[ICommand]
+        public string FullName => $"{UserName} {Password}";
+
+        [RelayCommand]
         void Tap()
         {
-            Debug.WriteLine($"{UserName} {Password}");
+            _auth.Login(new Models.Auth {
+                UserName = UserName,
+                Password = Password
+            });
         }
 
-        public LoginViewModel()
+        public LoginViewModel(IAuthService authService)
         {
+            _auth = authService;
         }
     }
 }

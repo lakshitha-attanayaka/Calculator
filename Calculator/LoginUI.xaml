@@ -7,6 +7,7 @@
         <Label TextColor="Red" Padding="10" FontSize="20" VerticalOptions="Center">  Welcome</Label>
         <Entry Placeholder="Username" TextColor="Black" PlaceholderColor="Gray" Text="{Binding UserName}" ></Entry>
         <Entry Placeholder="Password" IsPassword="True"  TextColor="Black" PlaceholderColor="Gray" Text="{Binding Password}" ></Entry>
+
         <Button 
             Text="Login" 
             Command="{Binding TapCommand}"></Button>
