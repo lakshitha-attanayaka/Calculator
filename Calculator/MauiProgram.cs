@@ -1,6 +1,8 @@
-﻿using Calculator.Services;
+﻿using Calculator.RestServices;
+using Calculator.Services;
 using Calculator.Services.Abstractions;
 using Calculator.ViewModels;
+using RestEase.HttpClientFactory;
 
 namespace Calculator;
 
@@ -10,18 +12,27 @@ public static class MauiProgram
 	{
 		var builder = MauiApp.CreateBuilder();
 		builder
-			.UseMauiApp<App>()
+			.UsePrismApp<App>(prism =>
+			{
+				prism.RegisterTypes(container =>
+				{
+					//Navigation
+					container.RegisterForNavigation<LoginUI, LoginViewModel>();
+                    container.RegisterForNavigation<Home, HomeViewModel>();
+
+                    //Services
+                    container.RegisterSingleton<IAuthService, AuthService>();
+
+
+                })
+				.OnAppStart(navigationService => navigationService.CreateBuilder().AddNavigationPage().AddSegment<LoginViewModel>().Navigate());
+			})
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
-
-
-		builder.Services.AddSingleton<IAuthService, AuthService>();
         
-        builder.Services.AddSingleton<LoginViewModel>();
-
         return builder.Build();
     }
 }

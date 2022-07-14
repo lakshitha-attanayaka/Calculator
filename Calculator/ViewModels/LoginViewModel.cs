@@ -14,6 +14,7 @@ namespace Calculator.ViewModels
     public partial class LoginViewModel : ObservableObject
     {
         IAuthService _auth;
+        INavigationService _navigationService;
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(FullName))]
         private string _userName;
@@ -26,15 +27,13 @@ namespace Calculator.ViewModels
         [RelayCommand]
         void Tap()
         {
-            _auth.Login(new Models.Auth {
-                UserName = UserName,
-                Password = Password
-            });
+            _navigationService.CreateBuilder().AddSegment<HomeViewModel>().Navigate();
         }
 
-        public LoginViewModel(IAuthService authService)
+        public LoginViewModel(IAuthService authService, INavigationService navigationService)
         {
             _auth = authService;
+            _navigationService = navigationService;
         }
     }
 }

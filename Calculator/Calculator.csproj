@@ -50,6 +50,9 @@
 
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
+	  <PackageReference Include="Prism.DryIoc.Maui" Version="8.1.254-beta" />
+	  <PackageReference Include="RestEase" Version="1.5.7" />
+	  <PackageReference Include="RestEase.HttpClientFactory" Version="1.5.7" />
 	</ItemGroup>
 
 	<ItemGroup>

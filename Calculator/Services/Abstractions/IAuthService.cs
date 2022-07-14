@@ -9,6 +9,6 @@ namespace Calculator.Services.Abstractions
 {
     public interface IAuthService
     {
-        void Login(Auth auth);
+        bool Login(Auth auth);
     }
 }

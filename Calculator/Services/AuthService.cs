@@ -14,16 +14,9 @@ namespace Calculator.Services
         {
 
         }
-        public void Login(Auth auth)
+        public bool Login(Auth auth)
         {
-            if (auth.UserName == "admin" && auth.Password == "password")
-            {
-                App.Current.MainPage.Navigation.PushAsync(new Home());
-            }
-            else
-            {
-                App.Current.MainPage.DisplayAlert("Login Error", "User name or password incorrect", "OK");
-            }
+            return (auth.UserName == "admin" && auth.Password == "password");
         }
     }
 }

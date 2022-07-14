@@ -4,9 +4,6 @@
              x:Class="Calculator.Home"
              Title="Home">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to Home Page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Button Text="Back" TextColor="White" Command="{Binding BackCommand}"/>
     </VerticalStackLayout>
 </ContentPage>
