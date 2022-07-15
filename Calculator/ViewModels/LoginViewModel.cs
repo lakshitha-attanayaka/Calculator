@@ -1,4 +1,5 @@
-﻿using Calculator.Services.Abstractions;
+﻿using Calculator.RestServices;
+using Calculator.Services.Abstractions;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
@@ -15,6 +16,7 @@ namespace Calculator.ViewModels
     {
         IAuthService _auth;
         INavigationService _navigationService;
+        IGitHubService _gitHubService;
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(FullName))]
         private string _userName;
@@ -25,14 +27,16 @@ namespace Calculator.ViewModels
         public string FullName => $"{UserName} {Password}";
 
         [RelayCommand]
-        void Tap()
+        async void Tap()
         {
-            _navigationService.CreateBuilder().AddSegment<HomeViewModel>().Navigate();
+            //_navigationService.CreateBuilder().AddSegment<HomeViewModel>().Navigate();
+            var result = await _gitHubService.GetUser("lakshitha-attanayaka");
         }
 
-        public LoginViewModel(IAuthService authService, INavigationService navigationService)
+        public LoginViewModel(IAuthService authService, INavigationService navigationService, IGitHubService gitHubService)
         {
             _auth = authService;
+            _gitHubService = gitHubService;
             _navigationService = navigationService;
         }
     }

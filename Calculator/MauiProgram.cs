@@ -25,6 +25,10 @@ public static class MauiProgram
 
 
                 })
+				.ConfigureServices(services =>
+				{
+					services.AddRestEaseClient<IGitHubService>("https://api.github.com");
+                })
 				.OnAppStart(navigationService => navigationService.CreateBuilder().AddNavigationPage().AddSegment<LoginViewModel>().Navigate());
 			})
 			.ConfigureFonts(fonts =>

@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Calculator.RestServices
 {
+    [Header("User-Agent", "RestEase")]
     public interface IGitHubService
     {
         [Get("/users/{username}")]
-        Task<GitHubUser>GetUser(string username);
+        Task<GitHubUser>GetUser([Path] string username);
     }
 }
